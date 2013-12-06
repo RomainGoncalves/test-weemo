@@ -11,9 +11,15 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
+Route::get('/', 'HomeController@showWelcome');
+
+Route::get('login', function(){
+	return View::make('login');
+
 });
 
+Route::post('login',array('as' => 'login', 'uses' => 'AuthController@login'));
+
 Route::resource('users', 'UsersController');
+
+Route::resource('contacts', 'ContactsController');

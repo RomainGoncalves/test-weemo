@@ -17,7 +17,17 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		return View::make('hello');
+
+		$contacts = Contact::where('user_id1', '=', Auth::user()->id)->where('accepted', '=', 1)->get();
+
+		// $infoContact[] = "No contact accepted";
+
+		if($contacts){
+			foreach ($contacts as $contact) {
+				$infoContact[] = User::find($contact->user_id2);
+			}
+		}
+		return View::make('hello')->with('contacts', $infoContact);
 	}
 
 }
