@@ -11,16 +11,16 @@ class AuthController extends BaseController{
 
 		return View::make('hello')->with('user', $user);
 
-		// if (Auth::attempt(array('username' => Input::json('username'), 'password' => Input::json('password')))){
+		if (Auth::attempt(array('username' => Input::json('username'), 'password' => Input::json('password')))){
 	    	
-		// 	return Response::json( Auth::user() ) ;
+			return Response::json( Auth::user() ) ;
 
-		// }
-		// else{
+		}
+		else{
 
-		// 	return Response::json( array('flash' => 'Wrong username-password combination.'), 401 ) ;
+			return Response::json( array('flash' => 'Wrong username-password combination.'), 401 ) ;
 
-		// }
+		}
 	}
 
 	public function logout(){
